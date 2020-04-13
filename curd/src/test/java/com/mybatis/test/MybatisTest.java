@@ -58,12 +58,14 @@ public class MybatisTest {
     @Test
     public void testSave() throws IOException {
         User user = new User();
-        user.setUsername("mybatis saveuser");
-        user.setAddress("東京新宿区");
-        user.setSex("男");
+        user.setUsername("mybatis last insertid");
+        user.setAddress("东京涉谷");
+        user.setSex("女");
         user.setBirthday(new Date());
+        System.out.println("保存操作之前"+ user);
         //执行保存登录方法
         userDao.saveUser(user);
+        System.out.println("保存操作之后"+ user);
     }
 
     /**
@@ -74,12 +76,13 @@ public class MybatisTest {
     public void testUpdate()  {
         User user = new User();
         user.setId(50);
-        user.setUsername("mybatis updateuser");
-        user.setAddress("東京新宿区");
+        user.setUsername("mybatis last insertid");
+        user.setAddress("東京涉谷区");
         user.setSex("女");
         user.setBirthday(new Date());
         //执行更新方法
         userDao.updateUser(user);
+
     }
 
     /**
@@ -114,6 +117,17 @@ public class MybatisTest {
         for (User user : users) {
             System.out.println(user);
         }
+    }
+
+    /**
+     * 测试查询总记录条数
+     *
+     */
+    @Test
+    public void testFindeTotal()  {
+        //执行查询一个方法
+        int total = userDao.findTotal();
+        System.out.println(total);
     }
 }
 
