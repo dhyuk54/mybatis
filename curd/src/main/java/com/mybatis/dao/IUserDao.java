@@ -33,4 +33,18 @@ public interface IUserDao {
      * @param userId
      */
     public void deleteUser(Integer userId);
+
+    /**
+     * 根据ID 查询用户信息
+     * @param uid
+     * @return
+     */
+    public User findById (Integer uid);
+
+    /**
+     * 根据名称模糊查询
+     * @param username
+     * @return
+     */
+    public List<User> findByName(String username);
 }

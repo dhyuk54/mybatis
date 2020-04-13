@@ -26,5 +26,15 @@
     /*如果删除中的ID只有一个值占位符可以随意去写不用考虑user实体类中的属性是否一致*/
     delete from user where id = #{userId}
     </delete>
+    <!--根据ID查询用户-->
+    <!--resultType属性值为查询出来的结果集要封装到哪里去-->
+    <select id="findById" parameterType="int" resultType="com.mybatis.domain.User">
+        select * from user where id = #{uid}
+    </select>
 
+    <!--根据名称模糊查询-->
+    <select id="findByName" parameterType="String" resultType="com.mybatis.domain.User">
+    /*sql 语句中模糊查询语法为 % XX % */
+        select * from user where username like #{name}
+    </select>
 </mapper>
