@@ -25,6 +25,8 @@
     </insert>
     <!--更新用户-->
     <update id="updateUser" parameterType="com.mybatis.domain.User">
+        <!--parameterType 已经封装了User对象所以在使用#{}获取值时{不需要写入对象名.XXX}-->
+        <!-- 直接写属性名就可以获取值-->
         update user set username = #{username},address = #{address},sex = #{sex},birthday = #{birthday}
         where id = #{id}
     </update>
@@ -49,5 +51,12 @@
     <!--返回int类型的数据-->
     <select id="findTotal" resultType="int">
         select count(id) from user
+    </select>
+    <!-- 根据QueryVo的条件 查询用户-->
+    <!--parameterType属性值为当前类-->
+    <!--当前类中的属性没有username所以只能写QueryVo中user的对象-->
+    <!--#{中调用user对象中的username属性}来查询-->
+    <select id="findUserByvo" parameterType="com.mybatis.domain.QueryVo" resultType="com.mybatis.domain.User">
+        select * from user where username like #{user.username}
     </select>
 </mapper>

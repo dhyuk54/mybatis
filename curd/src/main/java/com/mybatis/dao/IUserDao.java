@@ -1,5 +1,6 @@
 package com.mybatis.dao;
 
+import com.mybatis.domain.QueryVo;
 import com.mybatis.domain.User;
 
 import java.util.List;
@@ -53,4 +54,11 @@ public interface IUserDao {
      * @return
      */
     public int findTotal();
+
+    /**
+     *根据queryVo查询中的条件查询用户信息
+     * @param vo
+     * @return
+     */
+    public List<User> findUserByvo(QueryVo vo);
 }

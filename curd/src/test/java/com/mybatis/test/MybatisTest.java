@@ -1,6 +1,7 @@
 package com.mybatis.test;
 
 import com.mybatis.dao.IUserDao;
+import com.mybatis.domain.QueryVo;
 import com.mybatis.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -128,6 +129,23 @@ public class MybatisTest {
         //执行查询一个方法
         int total = userDao.findTotal();
         System.out.println(total);
+    }
+
+
+    /**
+     * 测试使用QueryVo作为查询操作
+     *
+     */
+    @Test
+    public void testFindByvo()  {
+        QueryVo vo = new QueryVo();
+        User user = new User();
+        user.setUsername("%王%");
+        vo.setUser(user);
+        List<User> userByvo = userDao.findUserByvo(vo);
+        for (User user1 : userByvo) {
+            System.out.println(user1);
+        }
     }
 }
 
